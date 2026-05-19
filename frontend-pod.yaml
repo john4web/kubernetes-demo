@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: my-frontend
+  name: my-frontend
+spec:
+  containers:
+  - image: tsc-frontend
+    name: my-frontend
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
