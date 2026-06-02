@@ -6,7 +6,7 @@ metadata:
   name: my-backend
 spec:
   containers:
-  - image: tsc-backend
+  - image: ghcr.io/john4web/coffee-backend
     name: my-backend
     resources: {}
   dnsPolicy: ClusterFirst

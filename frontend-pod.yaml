@@ -6,7 +6,7 @@ metadata:
   name: my-frontend
 spec:
   containers:
-  - image: tsc-frontend
+  - image: ghcr.io/john4web/coffee-frontend
     name: my-frontend
     resources: {}
   dnsPolicy: ClusterFirst
