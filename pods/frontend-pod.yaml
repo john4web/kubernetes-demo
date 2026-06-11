@@ -8,6 +8,9 @@ spec:
   containers:
   - image: ghcr.io/john4web/coffee-frontend
     name: my-frontend
+    env:
+      - name: API_BASE_URL
+        value: http://localhost:3001
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always

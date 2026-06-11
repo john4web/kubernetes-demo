@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend-deployment
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend-deployment
+    spec:
+      containers:
+      - image: ghcr.io/john4web/coffee-frontend
+        name: coffee-frontend
+        ports:
+          - containerPort: 3000
+        env:
+          - name: API_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: my-configmap
+                key: API_BASE_URL
+        resources: {}
