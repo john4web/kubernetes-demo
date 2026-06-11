@@ -27,3 +27,4 @@ spec:
                     name: my-configmap
                     key: MONGODB_URI
         resources: {}
+# ToDo: Add replicas, requests, limits, liveness-probe and readiness-probe!
