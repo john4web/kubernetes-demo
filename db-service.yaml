@@ -6,8 +6,8 @@ metadata:
   name: db-service
 spec:
   ports:
-  - port: 27017
-    protocol: TCP
-    targetPort: 27017
+    - port: 27017
+      protocol: TCP
+      targetPort: 27017
   selector:
     app: db-deployment

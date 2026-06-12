@@ -5,26 +5,38 @@ metadata:
     app: backend-deployment
   name: backend-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: backend-deployment
-  strategy: {}
+  strategy: { }
   template:
     metadata:
       labels:
         app: backend-deployment
     spec:
       containers:
-      - image: ghcr.io/john4web/coffee-backend
-        name: coffee-backend
-        ports:
-          - containerPort: 3001
-        env:
-          - name: MONGODB_URI
-            valueFrom:
+        - image: ghcr.io/john4web/coffee-backend
+          name: coffee-backend
+          ports:
+            - containerPort: 3001
+          env:
+            - name: MONGODB_URI
+              valueFrom:
                 configMapKeyRef:
-                    name: my-configmap
-                    key: MONGODB_URI
-        resources: {}
-# ToDo: Add replicas, requests, limits, liveness-probe and readiness-probe!
+                  name: my-configmap
+                  key: MONGODB_URI
+          resources: { }
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 3001
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 3
