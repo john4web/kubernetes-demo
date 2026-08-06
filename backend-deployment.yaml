@@ -5,7 +5,7 @@ metadata:
     app: backend-deployment
   name: backend-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: backend-deployment
@@ -26,7 +26,13 @@ spec:
                 configMapKeyRef:
                   name: my-configmap
                   key: MONGODB_URI
-          resources: { }
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 250m
           livenessProbe:
             httpGet:
               path: /healthz

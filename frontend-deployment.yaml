@@ -5,7 +5,7 @@ metadata:
     app: frontend-deployment
   name: frontend-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: frontend-deployment
@@ -26,4 +26,10 @@ spec:
                 configMapKeyRef:
                   name: my-configmap
                   key: API_BASE_URL
-          resources: { }
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 250m
