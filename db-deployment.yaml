@@ -15,9 +15,16 @@ spec:
       labels:
         app: db-deployment
     spec:
+      volumes:
+        - name: my-data
+          persistentVolumeClaim:
+            claimName: my-data
       containers:
         - image: mongo:7
           name: mongo
+          volumeMounts:
+            - name: my-data
+              mountPath: /data/db
           ports:
             - containerPort: 27017
           resources: { }
