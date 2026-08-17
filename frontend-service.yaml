@@ -5,7 +5,6 @@ metadata:
     app: frontend-service
   name: frontend-service
 spec:
-  type: LoadBalancer # ToDo: Do this with ingress instead of Loadbalancer service!
   ports:
     - port: 3000
       protocol: TCP
