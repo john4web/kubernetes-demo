@@ -5,7 +5,8 @@ metadata:
 spec:
   ingressClassName: contour
   rules:
-    - http:
+    - host: localhost
+      http:
         paths:
           - path: /
             pathType: Prefix
