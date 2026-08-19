@@ -15,6 +15,7 @@ spec:
       labels:
         app: backend-deployment
     spec:
+      serviceAccountName: backend-sa
       containers:
         - image: ghcr.io/john4web/coffee-backend
           name: coffee-backend

@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+rules:
+  - apiGroups: [ "" ] # "" indicates the core API group
+    resources: [ "pods" ]
+    verbs: [ "get", "watch", "list" ]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+subjects:
+  - kind: ServiceAccount
+    name: backend-sa
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+
+# command to test the role binding:
+# kubectl run my-shell --rm -it --image bitnami/kubectl --overrides='{ "spec": { "serviceAccount": "backend-sa" } }' --command -- /bin/bash
