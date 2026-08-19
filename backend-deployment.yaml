@@ -19,6 +19,8 @@ spec:
       containers:
         - image: ghcr.io/john4web/coffee-backend
           name: coffee-backend
+          securityContext:
+            readOnlyRootFilesystem: true # you cannot create files in the container's filesystem
           ports:
             - containerPort: 3001
           env:
